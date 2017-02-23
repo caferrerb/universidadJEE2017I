@@ -1,90 +1,90 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template.xhtml"
+	>
 
-<h:head>
+	<ui:define name="cuerpo">
+		<h:form prependId="false">
+			<h:panelGrid id="paneldatos" columns="2">
 
-</h:head>
-<h:body>
-	<h:form prependId="false">
-		<h:panelGrid id="paneldatos" columns="2">
+				<h:outputLabel for="tfid" id="lblid" value="Identificacion" />
+				<h:inputText id="tfid" value="#{docenteController.identificacion}" />
 
-			<h:outputLabel for="tfid" id="lblid" value="Identificacion" />
-			<h:inputText id="tfid" value="#{docenteController.identificacion}" />
+				<h:outputLabel for="tfnom" id="lblnom" value="Nombre" />
+				<h:inputText id="tfnom" value="#{docenteController.nombre}" />
 
-			<h:outputLabel for="tfnom" id="lblnom" value="Nombre" />
-			<h:inputText id="tfnom" value="#{docenteController.nombre}" />
+				<h:outputLabel for="tfape" id="lblape" value="Apellido" />
+				<h:inputText id="tfape" value="#{docenteController.apellido}" />
 
-			<h:outputLabel for="tfape" id="lblape" value="Apellido" />
-			<h:inputText id="tfape" value="#{docenteController.apellido}" />
+				<h:outputLabel for="tfmail" id="lblmail" value="Correo Electronico" />
+				<h:inputText id="tfmail" value="#{docenteController.correo}" />
 
-			<h:outputLabel for="tfmail" id="lblmail" value="Correo Electronico" />
-			<h:inputText id="tfmail" value="#{docenteController.correo}" />
+				<h:outputLabel for="tftel" id="lbltel" value="Telefono" />
+				<h:inputText id="tftel" value="#{docenteController.telefono}" />
 
-			<h:outputLabel for="tftel" id="lbltel" value="Telefono" />
-			<h:inputText id="tftel" value="#{docenteController.telefono}" />
+				<h:outputLabel for="tfcod" id="lblcod" value="Codigo" />
+				<h:inputText id="tfcod" value="#{docenteController.codigo}" />
 
-			<h:outputLabel for="tfcod" id="lblcod" value="Codigo" />
-			<h:inputText id="tfcod" value="#{docenteController.codigo}" />
+				<h:outputLabel for="cbprog" id="lblprog" value="Programa" />
+				<h:selectOneMenu id="cbprog"
+					value="#{docenteController.programaSeleccionado}"
+					converter="progConverter">
 
-			<h:outputLabel for="cbprog" id="lblprog" value="Programa" />
-			<h:selectOneMenu id="cbprog"
-				value="#{docenteController.programaSeleccionado}"
-				converter="progConverter">
+					<f:selectItems value="#{docenteController.programas}" var="prog"
+						itemValue="#{prog}" itemLabel="#{prog.nombre}" />
 
-				<f:selectItems value="#{docenteController.programas}" var="prog"
-					itemValue="#{prog}" itemLabel="#{prog.nombre}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
 
-			</h:selectOneMenu>
-		</h:panelGrid>
+			<h:panelGrid id="panelbtns" columns="3">
 
-		<h:panelGrid id="panelbtns" columns="3">
+				<h:commandButton id="btncrear" value="Crear"
+					action="#{docenteController.crear}" />
+				<h:commandButton id="btneditar" value="Editar"
+					action="#{docenteController.editar}" />
+				<h:commandButton id="btnbuscar" value="Buscar"
+					action="#{docenteController.buscar}" />
 
-			<h:commandButton id="btncrear" value="Crear"
-				action="#{docenteController.crear}" />
-			<h:commandButton id="btneditar" value="Editar"
-				action="#{docenteController.editar}" />
-			<h:commandButton id="btnbuscar" value="Buscar"
-				action="#{docenteController.buscar}" />
-
-		</h:panelGrid>
+			</h:panelGrid>
 
 
-		<h:dataTable id="tablaDocs" value="#{docenteController.docentes}"
-			var="doc" border="1">
+			<h:dataTable id="tablaDocs" value="#{docenteController.docentes}"
+				var="doc" border="1">
 
-			<h:column>
-				<f:facet name="header">
+				<h:column>
+					<f:facet name="header">
 					Identificacion
 				</f:facet>
-				<h:outputLabel value="#{doc.documentoidentificacion}" />
-			</h:column>
+					<h:outputLabel value="#{doc.documentoidentificacion}" />
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">
+				<h:column>
+					<f:facet name="header">
 					Nombre
 				</f:facet>
-				<h:outputLabel value="#{doc.nombre}" />
-			</h:column>
+					<h:outputLabel value="#{doc.nombre}" />
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">
+				<h:column>
+					<f:facet name="header">
 					Apellido
 				</f:facet>
-				<h:outputLabel value="#{doc.apellido}" />
-			</h:column>
+					<h:outputLabel value="#{doc.apellido}" />
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">
+				<h:column>
+					<f:facet name="header">
 					Programa
 				</f:facet>
-				<h:outputLabel value="#{doc.programa.nombre}" />
-			</h:column>
-		</h:dataTable>
+					<h:outputLabel value="#{doc.programa.nombre}" />
+				</h:column>
+			</h:dataTable>
 
 
-	</h:form>
-</h:body>
+		</h:form>
+	</ui:define>
 
-</html>
+</ui:composition>

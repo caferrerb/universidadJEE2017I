@@ -8,9 +8,11 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
+import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.DocenteEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.ProgramaEJB;
+import co.edu.eam.ingesoft.pa.negocio.excepciones.ExcepcionNegocio;
 import co.edu.eam.ingesoft.pa.persistencia.modelo.entidades.Docente;
 import co.edu.eam.ingesoft.pa.persistencia.modelo.entidades.Programa;
 
@@ -50,7 +52,7 @@ public class DocentesController implements Serializable {
 	 * programa seleccionado.
 	 */
 	private Programa programaSeleccionado;
-	
+
 	/**
 	 * lista de docente.s
 	 */
@@ -67,32 +69,41 @@ public class DocentesController implements Serializable {
 	 */
 	@EJB
 	private ProgramaEJB programaEJB;
-	
+
 	/**
 	 * metodo de inicializacion
 	 */
 	@PostConstruct
-	public void inicializar(){
-		programas=programaEJB.listar();
-		docentes=docenteEJB.listar();
+	public void inicializar() {
+		programas = programaEJB.listar();
+		docentes = docenteEJB.listar();
 	}
 
 	/**
 	 * MEtodo para crear un docente.
 	 */
 	public void crear() {
-		Docente doc = new Docente(identificacion, nombre, apellido, correo, telefono, programaSeleccionado);
-		doc.setCodigodocente(codigo);
-		docenteEJB.crearDocente(doc);
-		//limpiando los campos
-		identificacion="";
-		nombre ="";
-		apellido = "";
-		correo = "";
-		telefono = "";
-		programaSeleccionado = null;
-		codigo="";
-		docentes=docenteEJB.listar();
+		try {
+			Docente doc = new Docente(identificacion, nombre, apellido, correo, telefono, programaSeleccionado);
+			doc.setCodigodocente(codigo);
+			docenteEJB.crearDocente(doc);
+			// limpiando los campos
+			identificacion = "";
+			nombre = "";
+			apellido = "";
+			correo = "";
+			telefono = "";
+			programaSeleccionado = null;
+			codigo = "";
+			docentes = docenteEJB.listar();
+			
+			Messages.addFlashGlobalInfo("Docente Creado exitosamente");
+			
+		} catch (ExcepcionNegocio e) {
+			
+			Messages.addGlobalError(e.getMessage());
+		}
+
 	}
 
 	/**
@@ -107,8 +118,11 @@ public class DocentesController implements Serializable {
 			correo = doc.getCorreoelectronico();
 			telefono = doc.getTelefono();
 			programaSeleccionado = doc.getPrograma();
-			codigo=doc.getCodigodocente();
+			codigo = doc.getCodigodocente();
+			Messages.addFlashGlobalInfo("Docente Encontrado");
 
+		} else {
+			Messages.addFlashGlobalWarn("Docente no existe");
 		}
 	}
 
@@ -116,9 +130,9 @@ public class DocentesController implements Serializable {
 	 * MEtodo para editar un docente.
 	 */
 	public void editar() {
-		
+
 	}
-	
+
 	/**
 	 * @return the identificacion
 	 */
@@ -127,7 +141,8 @@ public class DocentesController implements Serializable {
 	}
 
 	/**
-	 * @param identificacion the identificacion to set
+	 * @param identificacion
+	 *            the identificacion to set
 	 */
 	public void setIdentificacion(String identificacion) {
 		this.identificacion = identificacion;
@@ -141,7 +156,8 @@ public class DocentesController implements Serializable {
 	}
 
 	/**
-	 * @param nombre the nombre to set
+	 * @param nombre
+	 *            the nombre to set
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -155,7 +171,8 @@ public class DocentesController implements Serializable {
 	}
 
 	/**
-	 * @param apellido the apellido to set
+	 * @param apellido
+	 *            the apellido to set
 	 */
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
@@ -169,7 +186,8 @@ public class DocentesController implements Serializable {
 	}
 
 	/**
-	 * @param correo the correo to set
+	 * @param correo
+	 *            the correo to set
 	 */
 	public void setCorreo(String correo) {
 		this.correo = correo;
@@ -183,7 +201,8 @@ public class DocentesController implements Serializable {
 	}
 
 	/**
-	 * @param telefono the telefono to set
+	 * @param telefono
+	 *            the telefono to set
 	 */
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
@@ -197,7 +216,8 @@ public class DocentesController implements Serializable {
 	}
 
 	/**
-	 * @param codigo the codigo to set
+	 * @param codigo
+	 *            the codigo to set
 	 */
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
@@ -211,7 +231,8 @@ public class DocentesController implements Serializable {
 	}
 
 	/**
-	 * @param programas the programas to set
+	 * @param programas
+	 *            the programas to set
 	 */
 	public void setProgramas(List<Programa> programas) {
 		this.programas = programas;
@@ -225,7 +246,8 @@ public class DocentesController implements Serializable {
 	}
 
 	/**
-	 * @param programaSeleccionado the programaSeleccionado to set
+	 * @param programaSeleccionado
+	 *            the programaSeleccionado to set
 	 */
 	public void setProgramaSeleccionado(Programa programaSeleccionado) {
 		this.programaSeleccionado = programaSeleccionado;
@@ -237,7 +259,5 @@ public class DocentesController implements Serializable {
 	public List<Docente> getDocentes() {
 		return docentes;
 	}
-	
-	
 
 }
