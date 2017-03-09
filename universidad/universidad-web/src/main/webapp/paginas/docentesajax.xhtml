@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
+
+	<ui:define name="cuerpo">
+		<h:form prependId="false">
+
+			<p:panel id="paneldatos" header="Datos basicos">
+				<h:panelGrid columns="3">
+
+					<h:outputLabel for="tfid" id="lblid" value="Identificacion" />
+					<h:inputText id="tfid" value="#{docAjax.identificacion}" />
+					<p:message for="tfid" />
+
+					<h:outputLabel for="tfnom" id="lblnom" value="Nombre" />
+					<h:inputText id="tfnom" value="#{docAjax.nombre}" />
+					<p:message for="tfnom" />
+
+					<h:outputLabel for="tfape" id="lblape" value="Apellido" />
+					<h:inputText id="tfape" value="#{docAjax.apellido}" />
+					<p:message for="tfape" />
+
+					<h:outputLabel for="tfmail" id="lblmail" value="Correo Electronico" />
+					<h:inputText id="tfmail" value="#{docAjax.correo}" />
+					<p:message for="tfmail" />
+
+					<h:outputLabel for="tftel" id="lbltel" value="Telefono" />
+					<h:inputText id="tftel" value="#{docAjax.telefono}" />
+					<p:message for="tftel" />
+
+					<h:outputLabel for="tfcod" id="lblcod" value="Codigo" />
+					<h:inputText id="tfcod" value="#{docAjax.codigo}" />
+					<p:message for="tfcod" />
+
+
+					<h:outputLabel for="cbfac" id="lblfac" value="Facultad" />
+					<p:selectOneMenu id="cbfac" value="#{docAjax.facSeleccionada}" 
+						converter="facConverter">
+
+						<f:selectItems value="#{docAjax.facultades}" var="f" itemValue="#{f}"
+							itemLabel="#{f.nombre}" />
+						<f:ajax event="change" execute="@this" render="cbprog"
+							listener="#{docAjax.seleccionarFacultad}" />
+
+					</p:selectOneMenu>
+					<p:message for="cbfac" />
+
+
+					<h:outputLabel for="cbprog" id="lblprog" value="Programa" />
+					<p:selectOneMenu id="cbprog"
+						value="#{docAjax.programaSeleccionado}" converter="progConverter">
+
+						<f:selectItems value="#{docAjax.programas}" var="prog"
+							itemValue="#{prog}" itemLabel="#{prog.nombre}" />
+
+					</p:selectOneMenu>
+					<p:message for="cbprog" />
+
+
+				</h:panelGrid>
+			</p:panel>
+
+			<br />
+			<h:panelGrid id="panelbtns" columns="3">
+
+				<p:commandButton id="btncrear" value="Crear"
+					process="@this,paneldatos" update="paneldatos,tablaDocs"
+					action="#{docAjax.crear}" />
+				<p:commandButton id="btneditar" value="Editar"
+					process="@this,paneldatos" update="paneldatos,tablaDocs"
+					actionListener="#{docAjax.editar}" />
+				<p:commandButton id="btnbuscar" value="Buscar"
+					actionListener="#{docAjax.buscar}" process="@this tfid"
+					update="paneldatos" />
+
+			</h:panelGrid>
+			<br />
+
+			<p:panel header="Listado de docentes" id="paneltabla">
+				<p:dataTable id="tablaDocs" value="#{docAjax.docentes}" var="doc">
+
+					<p:column headerText="Identificacion">
+
+						<h:outputLabel value="#{doc.documentoidentificacion}" />
+					</p:column>
+
+					<p:column headerText="Nombre">
+
+						<h:outputLabel value="#{doc.nombre}" />
+					</p:column>
+
+					<p:column headerText="Apellido">
+
+						<h:outputLabel value="#{doc.apellido}" />
+					</p:column>
+
+					<p:column headerText="Programa">
+						<h:outputLabel value="#{doc.programa.nombre}" />
+					</p:column>
+
+					<p:column headerText="Acciones">
+						<p:commandButton action="#{docAjax.borrar(doc)}" process="@this" value="borrar"
+							update="paneltabla" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

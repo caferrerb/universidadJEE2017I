@@ -14,7 +14,7 @@ import co.edu.eam.ingesoft.pa.persistencia.modelo.entidades.Programa;
 
 @LocalBean
 @Stateless
-public class ProgramaEJB {
+public class FacultadEJB {
 
 	@PersistenceContext
 	private EntityManager em;
@@ -25,23 +25,11 @@ public class ProgramaEJB {
 	 * @return la lista de programas.
 	 */
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public List<Programa> listar() {
+	public List<Facultad> listar() {
 
-		return em.createNamedQuery(Programa.CONSULTA_LISTAR).getResultList();
+		return em.createNamedQuery(Facultad.CONSULTA_LISTAR).getResultList();
 	}
-
 	
-	/**
-	 * metodo para listar todos los programas de una facultad.
-	 * 
-	 * @return la lista de programas.
-	 */
-	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public List<Programa> listarPorFacultad(Facultad fac) {
-
-		return em.createNamedQuery(Programa.CONSULTAR_PROGRAMAS_POR_FACULTAD).setParameter(1, fac).getResultList();
-	}
-
 	/**
 	 * metodo para buscar.
 	 * 
@@ -49,7 +37,8 @@ public class ProgramaEJB {
 	 * @return
 	 */
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public Programa buscar(String codigo) {
-		return em.find(Programa.class, codigo);
+	public Facultad buscar(String codigo) {
+		return em.find(Facultad.class, codigo);
 	}
+
 }

@@ -41,6 +41,26 @@ public class DocenteEJB {
 	}
 	
 	/**
+	 * MEtodo para borrar un docente...
+	 * @param doc
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void editarDocente(Docente doc){
+		
+		em.merge(doc);
+	}
+	
+	/**
+	 * MEtodo para borrar un docente...
+	 * @param doc
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void borrarDocente(Docente doc){
+		doc=buscarDocente(doc.getDocumentoidentificacion());
+		em.remove(doc);
+	}
+	
+	/**
 	 * MEtodo para buscar un docente.
 	 * @param documentoidentificacion
 	 * @return el docente.

@@ -1,4 +1,4 @@
-package co.edu.eam.ingesoft.pa.universidad.web.controladores;
+package co.edu.eam.ingesoft.pa.universidad.web.convertidores;
 
 import javax.ejb.EJB;
 import javax.faces.component.UIComponent;

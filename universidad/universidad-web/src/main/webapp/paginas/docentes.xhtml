@@ -8,25 +8,31 @@
 
 	<ui:define name="cuerpo">
 		<h:form prependId="false">
-			<h:panelGrid id="paneldatos" columns="2">
+			<h:panelGrid id="paneldatos" columns="3">
 
 				<h:outputLabel for="tfid" id="lblid" value="Identificacion" />
 				<h:inputText id="tfid" value="#{docenteController.identificacion}" />
+				<p:message for="tfid"/>
 
 				<h:outputLabel for="tfnom" id="lblnom" value="Nombre" />
 				<h:inputText id="tfnom" value="#{docenteController.nombre}" />
-
+				<p:message for="tfnom"/>
+				
 				<h:outputLabel for="tfape" id="lblape" value="Apellido" />
 				<h:inputText id="tfape" value="#{docenteController.apellido}" />
+				<p:message for="tfape"/>
 
 				<h:outputLabel for="tfmail" id="lblmail" value="Correo Electronico" />
 				<h:inputText id="tfmail" value="#{docenteController.correo}" />
+				<p:message for="tfmail"/>
 
 				<h:outputLabel for="tftel" id="lbltel" value="Telefono" />
 				<h:inputText id="tftel" value="#{docenteController.telefono}" />
+				<p:message for="tftel"/>
 
 				<h:outputLabel for="tfcod" id="lblcod" value="Codigo" />
 				<h:inputText id="tfcod" value="#{docenteController.codigo}" />
+				<p:message for="tfcod"/>
 
 				<h:outputLabel for="cbprog" id="lblprog" value="Programa" />
 				<h:selectOneMenu id="cbprog"
@@ -37,6 +43,9 @@
 						itemValue="#{prog}" itemLabel="#{prog.nombre}" />
 
 				</h:selectOneMenu>
+				<p:message for="cbprog"/>
+				
+				
 			</h:panelGrid>
 
 			<h:panelGrid id="panelbtns" columns="3">

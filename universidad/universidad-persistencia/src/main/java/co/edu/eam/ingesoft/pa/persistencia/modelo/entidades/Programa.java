@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name=Programa.CONSULTA_PROGRAMA_POR_CODIGO, query="SELECT a FROM Programa a WHERE a.codigo=?1"),
 	@NamedQuery(name=Programa.CONSULTA_LISTAR, query="SELECT a FROM Programa a"),
-	@NamedQuery(name=Programa.CONSULTAR_PROGRAMAS_POR_FACULTAD, query="SELECT a FROM Programa a WHERE a.facultad.codigo=?1")
+	@NamedQuery(name=Programa.CONSULTAR_PROGRAMAS_POR_FACULTAD, query="SELECT a FROM Programa a WHERE a.facultad=?1")
 
 
 })
