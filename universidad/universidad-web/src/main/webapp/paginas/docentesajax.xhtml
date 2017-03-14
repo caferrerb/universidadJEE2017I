@@ -10,32 +10,32 @@
 			<p:panel id="paneldatos" header="Datos basicos">
 				<h:panelGrid columns="3">
 
-					<h:outputLabel for="tfid" id="lblid" value="Identificacion" />
+					<h:outputLabel for="tfid" id="lblid" value="#{msj['docentes.identificacion']}:" />
 					<h:inputText id="tfid" value="#{docAjax.identificacion}" />
 					<p:message for="tfid" />
 
-					<h:outputLabel for="tfnom" id="lblnom" value="Nombre" />
+					<h:outputLabel for="tfnom" id="lblnom" value="#{msj['docentes.nombre']}:" />
 					<h:inputText id="tfnom" value="#{docAjax.nombre}" />
 					<p:message for="tfnom" />
 
-					<h:outputLabel for="tfape" id="lblape" value="Apellido" />
+					<h:outputLabel for="tfape" id="lblape" value="#{msj['docentes.apellido']}:" />
 					<h:inputText id="tfape" value="#{docAjax.apellido}" />
 					<p:message for="tfape" />
 
-					<h:outputLabel for="tfmail" id="lblmail" value="Correo Electronico" />
+					<h:outputLabel for="tfmail" id="lblmail" value="#{msj['docentes.correo']}:" />
 					<h:inputText id="tfmail" value="#{docAjax.correo}" />
 					<p:message for="tfmail" />
 
-					<h:outputLabel for="tftel" id="lbltel" value="Telefono" />
+					<h:outputLabel for="tftel" id="lbltel" value="#{msj['docentes.telefono']}:" />
 					<h:inputText id="tftel" value="#{docAjax.telefono}" />
 					<p:message for="tftel" />
 
-					<h:outputLabel for="tfcod" id="lblcod" value="Codigo" />
+					<h:outputLabel for="tfcod" id="lblcod" value="#{msj['docentes.codigo']}:" />
 					<h:inputText id="tfcod" value="#{docAjax.codigo}" />
 					<p:message for="tfcod" />
 
 
-					<h:outputLabel for="cbfac" id="lblfac" value="Facultad" />
+					<h:outputLabel for="cbfac" id="lblfac" value="#{msj['docentes.facultad']}:" />
 					<p:selectOneMenu id="cbfac" value="#{docAjax.facSeleccionada}" 
 						converter="facConverter">
 
@@ -48,7 +48,7 @@
 					<p:message for="cbfac" />
 
 
-					<h:outputLabel for="cbprog" id="lblprog" value="Programa" />
+					<h:outputLabel for="cbprog" id="lblprog" value="#{msj['docentes.prog']}:" />
 					<p:selectOneMenu id="cbprog"
 						value="#{docAjax.programaSeleccionado}" converter="progConverter">
 
