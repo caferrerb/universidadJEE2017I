@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="privilegio")
+@NamedQuery(name="Privilegio.listarXRol",query="SELECT p FROM PrivilegioRol pxr JOIN pxr.privilegio p WHERE pxr.rol=?1")
 public class Privilegio implements Serializable {
 	
 	@Id

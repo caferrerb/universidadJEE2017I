@@ -43,6 +43,11 @@ INSERT INTO privilegio_rol(idprivilegio,idrol) values(3,2);
 
 INSERT INTO privilegio_rol(idprivilegio,idrol) values(2,3);
 
+INSERT INTO usuario(persona,user,password,idrol) values('1234','caferrer','1234','1');
+INSERT INTO usuario(persona,user,password,idrol) values('2345','quitian14','2345','2');
+INSERT INTO usuario(persona,user,password,idrol) values('3456','gladys','3456','3');
+
+
 
 
 

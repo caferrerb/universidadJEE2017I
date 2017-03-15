@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name="usuario")
 @Entity
+@NamedQuery(name="Usuario.buscarXUser",query="SELECT u FROM Usuario u WHERE u.user=?1")
 public class Usuario implements Serializable {
 	
 	@Id
@@ -29,6 +31,7 @@ public class Usuario implements Serializable {
 	private Persona persona;
 	
 	@ManyToOne
+	@JoinColumn(name="idrol")
 	private Rol rol;
 	
 	public Usuario() {

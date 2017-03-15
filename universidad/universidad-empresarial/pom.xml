@@ -50,7 +50,7 @@
 					<filename>${project.artifactId}.ear</filename>
 					<skip>false</skip>
 					<hostname>localhost</hostname>
-					<port>9992</port>
+					<port>9991</port>
 					<username>user</username>
 					<password>password</password>
 				</configuration>
