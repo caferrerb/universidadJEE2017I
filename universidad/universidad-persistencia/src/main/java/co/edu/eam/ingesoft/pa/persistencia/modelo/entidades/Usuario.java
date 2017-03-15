@@ -20,7 +20,8 @@ public class Usuario implements Serializable {
 	@Column(name="persona")
 	private String idPersona;
 	
-	@Column(unique=true)
+	@Column(unique=true,name="usuario")
+	
 	private String user;
 	
 	@Column
