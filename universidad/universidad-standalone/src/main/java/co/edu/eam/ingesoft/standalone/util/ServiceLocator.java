@@ -13,8 +13,8 @@ import javax.naming.NamingException;
  */
 public class ServiceLocator {
 	
-	private static final String APP_NAME = "universidad-empresarial";
-	private static final String MODULE_NAME = "universidad-negocio";
+	private static final String APP_NAME = "universidad1";
+	private static final String MODULE_NAME = "universidad-negocio1";
 	private static final String DISTINCT_NAME = "";
 
 	/**

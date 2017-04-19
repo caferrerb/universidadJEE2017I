@@ -15,7 +15,7 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<type>ejb</type>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>co.edu.eam.ingesoft.avanzada</groupId>
 			<artifactId>universidad-persistencia</artifactId>
@@ -40,14 +40,28 @@
 				<configuration>
 					<version>7</version>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<finalName>universidad1</finalName>
+
 					<fileNameMapping>no-version</fileNameMapping>
+					<modules>
+						<ejbModule>
+							<groupId>co.edu.eam.ingesoft.avanzada</groupId>
+							<artifactId>universidad-negocio</artifactId>
+							<bundleFileName>universidad-negocio1</bundleFileName>
+						</ejbModule>
+						<webModule>
+							<groupId>co.edu.eam.ingesoft.avanzada</groupId>
+							<artifactId>universidad-web</artifactId>
+							<contextRoot>/universidad1</contextRoot>
+						</webModule>
+						</modules>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<configuration>
-					<filename>${project.artifactId}.ear</filename>
+					<filename>universidad1.ear</filename>
 					<skip>false</skip>
 					<hostname>localhost</hostname>
 					<port>9991</port>
