@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title><h:outputText
+			value="Configurar Banco #{controlador.conf.banco.nombre}" /></title>
+</h:head>
+
+<body>
+	<p:messages autoUpdate="true" globalOnly="true" closable="true" />
+	<h:form>
+		<h1>
+			<h:outputText value="Transferencias" />
+		</h1>
+		<p:panel header="Transferencias">
+
+			<p:dataTable value="#{controlador.txs}" var="t">
+				<p:column headerText="Id">
+					#{t.id}
+				</p:column>
+
+				<p:column headerText="Banco" filterBy="#{t.cuenta.banco.nombre}"
+					sortBy="#{t.cuenta.banco.nombre}">
+					#{t.cuenta.banco.nombre}
+				</p:column>
+
+				<p:column headerText="Numero" filterBy="#{t.cuenta.numero}"
+					sortBy="#{t.cuenta.numero}">
+					#{t.cuenta.numero}
+				</p:column>
+
+				<p:column headerText="Fecha" sortBy="#{t.fecha}">
+					#{t.fecha}				
+				</p:column>
+
+				<p:column headerText="Monto">
+					#{t.monto}				
+				</p:column>
+
+				<p:column headerText="Estado">
+					#{t.estado}				
+				</p:column>
+			</p:dataTable>
+
+		</p:panel>
+		<h:commandButton action="/index.xhtml?faces-redirect=true"
+			value="Volver" />
+
+	</h:form>
+</body>
+</html>

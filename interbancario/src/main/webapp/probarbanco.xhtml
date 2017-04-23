@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+<title><h:outputText value="#{msg.welcomeTitle}" /></title>
+</h:head>
+
+<body>
+	<p:messages autoUpdate="true" globalOnly="true" closable="true" />
+	<h:form>
+		<h1>
+			<h:outputText
+				value="Probando configuracion del banco #{controlador.conf.banco.nombre}" />
+		</h1>
+		<p:panel header="Configuracion enviar dinero">
+			<h:panelGrid columns="2" id="panelenviar">
+				<h:outputLabel for="parEnvCuenta" value="cuenta:" />
+				<h:inputText id="parEnvCuenta" value="#{controlador.numeroCuenta}" />
+
+				<h:outputLabel for="parMonto" value="monto" />
+				<h:inputText id="parMonto" value="#{controlador.monto}" />
+			</h:panelGrid>
+
+			<br />
+			<p:commandButton action="#{controlador.probarEnviarDinero()}"
+				process="@this,panelenviar" value="Probar" />
+		</p:panel>
+
+		<p:panel header="Configuracion Verificar cuenta">
+			<h:panelGrid columns="2" id="panelverificar">
+				<h:outputLabel for="parVerCuenta" value="Numero cuenta:" />
+				<h:inputText id="parVerCuenta" value="#{controlador.numeroCuenta}" />
+
+				<h:outputLabel for="parNumerodoc" value="Numero doc:" />
+				<h:inputText id="parNumerodoc" value="#{controlador.numeroDoc}" />
+
+				<h:outputLabel for="cbtipo" value="Tipo doc:" />
+				<h:selectOneMenu value="#{controlador.tipoDoc}" id="cbtipo">
+					<f:selectItems value="#{controlador.tipos}" var="t"
+						itemLabel="#{t}" itemValue="#{t}" />
+				</h:selectOneMenu>
+
+			</h:panelGrid>
+			<br />
+			<p:commandButton action="#{controlador.probarVerificarCuenta()}"
+				process="@this,panelverificar" value="Probar" />
+		</p:panel>
+		<h:commandButton action="/index.xhtml?faces-redirect=true"
+			value="Volver" />
+	</h:form>
+</body>
+</html>

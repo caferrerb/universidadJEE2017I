@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="contenido">
+
+		<h:form prependId="false" id="form">
+
+			<h1>Crear cuenta</h1>
+
+			<p:panel id="paneldata">
+				<h:panelGrid columns="3">
+
+					<p:outputLabel value="Cliente:" for="tfcli" />
+					<p:inputText id="tfcli" value="#{cuentaBean.cedulaCliente}"
+						required="true" />
+					<p:message for="tfcli" />
+
+					<p:outputLabel value="Numero:" for="tfnum" />
+					<p:inputText id="tfnum" value="#{cuentaBean.numero}"
+						required="true" validator="numeroval"  />
+					<p:message for="tfnum" />
+
+					<p:outputLabel value="Tipo cuenta:" for="cbtipo" />
+					<h:selectOneMenu id="cbtipo" styleClass="inputlargo"
+						required="true" value="#{cuentaBean.tipoCuentaSeleccionado}"
+						converter="#{tipoCuentaConverter}">
+						<f:selectItems value="#{cuentaBean.listaTipos}" var="tip"
+							itemValue="#{tip}" itemLabel="#{tip.nombre}" />
+
+					</h:selectOneMenu>
+					<p:message for="cbtipo" />
+
+				</h:panelGrid>
+				<p:commandButton id="btnCrear" action="#{cuentaBean.crear()}" value="Crear cuenta" update="paneldata"/>
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

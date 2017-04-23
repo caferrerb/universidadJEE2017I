@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:component="http://java.sun.com/jsf/composite/component">
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="contenido">
+		<h:form id="formError">
+			<center>
+
+
+				<h:outputText value="Hubo un error Inesperado" style="color:black;" />
+
+				<p:separator style="margin-bottom:30px" />
+
+				<p:commandButton id="botonContinuar"
+					onclick="history.back(); return false;" value="Volver" />
+
+
+
+
+			</center>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

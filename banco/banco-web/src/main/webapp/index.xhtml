@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:component="http://java.sun.com/jsf/composite/component">
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="contenido">
+		<h:form id="formError" prependId="false">
+
+
+			<h:panelGrid columns="3" rendered="#{!sesionBean.logged}">
+			
+					<p:outputLabel for="tfuser" value="Usuario:"/>
+					<h:inputText value="#{sesionBean.nombreUsuario}" id="tfuser"/>
+					<p:message for="tfuser"/>
+					
+					<p:outputLabel for="tfpass" value="Contraseña:"/>
+					<h:inputSecret value="#{sesionBean.pass}" id="tfpass"/>
+					<p:message for="tfpass"/>
+				
+			</h:panelGrid>
+			
+			<p:commandButton value="Iniciar sesion" action="#{sesionBean.login()}"/>
+			
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

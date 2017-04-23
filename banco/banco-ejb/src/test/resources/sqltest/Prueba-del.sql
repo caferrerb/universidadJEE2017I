@@ -1,0 +1,2 @@
+DELETE FROM cliente WHERE cedula ='54321';
+DELETE FROM cliente WHERE cedula='1094123345'

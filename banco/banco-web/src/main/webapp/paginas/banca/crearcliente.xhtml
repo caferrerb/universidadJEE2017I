@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="contenido">
+
+		<h:form prependId="false" id="form">
+
+			<p:panel id="paneldata">
+
+				<h:panelGrid columns="3">
+
+					<p:outputLabel for="tfced" value="#{msj['cliente.cedula']}:" />
+					<h:inputText id="tfced" value="#{clienteBean.instancia.cedula}"
+						required="true" placeholder="nombre" />
+					<p:message for="tfced" />
+
+					<p:outputLabel for="tfnom" value="#{msj['cliente.nombre']}:" />
+					<h:inputText id="tfnom" value="#{clienteBean.instancia.nombre}"
+						required="true" />
+					<p:message for="tfnom" />
+
+					<p:outputLabel for="tfdir" value="#{msj['cliente.direccion']}:" />
+					<h:inputText id="tfdir" value="#{clienteBean.instancia.direccion}"
+						required="true" />
+					<p:message for="tfdir" />
+
+					<p:outputLabel for="tftel" value="#{msj['cliente.telefono']}:" />
+					<h:inputText id="tftel" value="#{clienteBean.instancia.telefono}"
+						required="true" />
+					<p:message for="tftel" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+					<p:commandButton action="#{clienteBean.buscar()}"
+						value="#{msj['cliente.buscar']}" update="paneldata"
+						process="@this,tfced" id="btnBuscar" />
+
+					<p:commandButton action="#{clienteBean.crear()}"
+						value="#{msj['cliente.crear']}" update="paneldata,panellista"
+						process="@this,paneldata" id="btnCrear" />
+
+					<p:commandButton action="#{clienteBean.editar()}" value="Editar"
+						update="paneldata,panellista" process="@this,paneldata"
+						id="btnEditar" />
+				</h:panelGrid>
+
+			</p:panel>
+
+			<p:panel id="panellista" header="Lista de clientes">
+
+				<p:dataTable id="tabla" value="#{clienteBean.lista}" var="cli">
+
+					<p:column headerText="#{msj['cliente.cedula']}"
+						sortBy="#{cli.cedula}">
+						<h:outputText value="#{cli.cedula}" />
+					</p:column>
+
+					<p:column headerText="#{msj['cliente.nombre']}"
+						sortBy="#{cli.nombre}">
+						<h:outputText value="#{cli.nombre}" />
+					</p:column>
+
+					<p:column headerText="#{msj['cliente.telefono']}"
+						sortBy="#{cli.telefono}">
+						<h:outputText value="#{cli.telefono}" />
+					</p:column>
+
+					<p:column headerText="#{msj['cliente.direccion']}"
+						sortBy="#{cli.direccion}">
+						<h:outputText value="#{cli.direccion}" />
+					</p:column>
+
+					<p:column headerText="Accion">
+						<p:commandButton action="#{clienteBean.seleccionar(cli)}"
+							value="#{msj['cliente.seleccionar']}" id="btnSeleccione"
+							update="paneldata,panellista" process="@this" />
+
+						<p:commandButton action="#{clienteBean.seleccionar(cli)}"
+							value="Eliminar" id="btnSeleccionemod"
+							oncomplete="PF('dlg2').show();"
+							update="paneldata,panellista,modalCLi" process="@this" />
+					</p:column>
+
+				</p:dataTable>
+
+			</p:panel>
+
+
+
+			<p:dialog header="Modal Dialog" widgetVar="dlg2" id="modalCLi"
+				height="100">
+
+
+				<h:outputText value="#{clienteBean.instancia.nombre}" />
+				<br />
+				<p:commandButton action="#{clienteBean.borrar()}" value="Borrar"
+					update="paneldata,panellista,modalCLi,facesMessage"
+					oncomplete="PF('dlg2').hide();"  />
+
+			</p:dialog>
+
+			<script type="text/javascript">
+				function handleLoginRequest(xhr, status, args) {
+					if (args.validationFailed || !args.loggedIn) {
+						PF('dlg2').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlg2').hide();
+						$('#loginLink').fadeOut();
+					}
+				}
+			</script>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	</h:head>
+
+<body>
+	<p:messages autoUpdate="true" globalOnly="true" closable="true" />
+	<h:form>
+		<h1>
+			<h:outputText value="Cuentas inscritas" />
+		</h1>
+		<p:panel header="Cuentas">
+
+			<p:dataTable value="#{controlador.cuentas}" var="t">
+				<p:column headerText="Numero">
+					#{t.numero}
+				</p:column>
+
+				<p:column headerText="Banco" filterBy="#{t.banco.nombre}"
+					sortBy="#{t.banco.nombre}">
+					#{t.banco.nombre}
+				</p:column>
+				
+				<p:column headerText="Tipo Doc">
+					#{t.ciudadano.tipoDoc}
+				</p:column>
+				
+				<p:column headerText="Numero Doc">
+					#{t.ciudadano.numeroDoc}
+				</p:column>
+				
+				<p:column headerText="Nombre">
+					#{t.ciudadano.nombre}
+				</p:column>
+				
+				<p:column headerText="Estado">
+					#{t.estado}
+				</p:column>
+
+				
+			</p:dataTable>
+
+		</p:panel>
+<h:commandButton action="/index.xhtml?faces-redirect=true"
+			value="Volver" />
+
+	</h:form>
+</body>
+</html>

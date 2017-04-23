@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+<title><h:outputText
+		value="Configurar Banco #{controlador.conf.banco.nombre}" /></title>
+</h:head>
+
+<body>
+	<p:messages autoUpdate="true" globalOnly="true" closable="true" />
+	<h:form>
+		<h1>
+			<h:outputText
+				value="Editando configuracion del banco #{controlador.conf.banco.nombre}" />
+		</h1>
+		<p:panel header="Configuracion enviar dinero">
+			<h:panelGrid columns="3" id="panelenviar">
+
+				<h:outputLabel for="urlenviar" value="URL servicio enviar" />
+				<h:inputText id="urlenviar"
+					value="#{controlador.conf.urlEnviarDinero}" />
+				<p:message for="urlenviar" />
+
+				<h:outputLabel for="parEnvCuenta" value="Parametro cuenta:" />
+				<h:inputText id="parEnvCuenta"
+					value="#{controlador.conf.numeroCuentaEnvParam}" />
+				<p:message for="parEnvCuenta" />
+
+				<h:outputLabel for="parMonto" value="Parametro monto" />
+				<h:inputText id="parMonto" value="#{controlador.conf.montoEnvParam}" />
+				<p:message for="parMonto" />
+			</h:panelGrid>
+			<br />
+			<p:commandButton action="#{controlador.editarConfiguracion()}"
+				process="@this,panelenviar" value="Editar configuracion" />
+		</p:panel>
+
+		<p:panel header="Configuracion Verificar cuenta">
+			<h:panelGrid columns="3" id="panelverificar">
+
+				<h:outputLabel for="urlverificar" value="URL servicio verificar" />
+				<h:inputText id="urlverificar"
+					value="#{controlador.conf.urlVerificar}" />
+				<p:message for="urlverificar" />
+
+				<h:outputLabel for="parVerCuenta" value="Parametro cuenta:" />
+				<h:inputText id="parVerCuenta"
+					value="#{controlador.conf.numeroCuentaVerParam}" />
+				<p:message for="parVerCuenta" />
+
+				<h:outputLabel for="parCedula" value="Parametro Documento" />
+				<h:inputText id="parCedula"
+					value="#{controlador.conf.numeroDocVerParam}" />
+				<p:message for="parCedula" />
+
+				<h:outputLabel for="parTipo" value="Parametro Tipo Documento" />
+				<h:inputText id="parTipo"
+					value="#{controlador.conf.tipoDocVerParam}" />
+				<p:message for="parTipo" />
+
+			</h:panelGrid>
+			<br />
+			<p:commandButton action="#{controlador.editarConfiguracion()}"
+				process="@this,panelverificar" value="Editar configuracion" />
+		</p:panel>
+		<br />
+		<h:commandButton action="/index.xhtml?faces-redirect=true"
+			value="Volver" />
+
+	</h:form>
+</body>
+</html>

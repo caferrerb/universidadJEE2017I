@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="banco-ear">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
+        <dependent-module archiveName="banco-web.war" deploy-path="/" handle="module:/resource/banco-web/banco-web">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="banco-ejb.jar" deploy-path="/" handle="module:/resource/banco-ejb/banco-ejb">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="testdata.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/github/caferrerb/testdata/1.1.2-SNAPSHOT/testdata-1.1.2-SNAPSHOT.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="log4j.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

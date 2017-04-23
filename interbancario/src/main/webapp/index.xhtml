@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+</h:head>
+
+<body>
+	<p:messages autoUpdate="true" globalOnly="true" closable="true" />
+	<h:form>
+		<h:commandLink value="Ver transferencias"
+			action="/transacciones.xhtml?faces-redirect=true" />
+			<br/>
+			<h:commandLink value="Ver Cuentas"
+			action="/cuentas.xhtml?faces-redirect=true" />
+			<br/>
+		<p:panel header="Crear banco">
+
+			<h:panelGrid columns="3" id="paneldatos">
+
+				<h:outputLabel for="cod" value="Codigo:" />
+				<h:inputText id="cod" value="#{controlador.codigoBanco}" />
+				<p:message for="cod" />
+
+				<h:outputLabel for="nom" value="Nombre:" />
+				<h:inputText id="nom" value="#{controlador.nombreBanco}" />
+				<p:message for="nom" />
+
+
+			</h:panelGrid>
+			<br />
+			<p:commandButton action="#{controlador.crearBanco()}"
+				process="@this paneldatos lista" value="Crear banco" />
+
+
+		</p:panel>
+
+
+		<p:panel id="lista" header="listado bancos">
+
+			<p:dataTable value="#{controlador.bancos}" var="b">
+
+				<p:column headerText="Codigo">
+					<h:outputText value="#{b.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nombre">
+					<h:outputText value="#{b.nombre}" />
+				</p:column>
+
+				<p:column headerText="Acciones">
+					<p:commandButton value="Configurar" process="@this"
+						action="#{controlador.irConfBanco(b.codigo)}" />
+
+					<p:commandButton value="Probar" process="@this"
+						action="#{controlador.irProbarBanco(b.codigo)}" />
+
+
+
+				</p:column>
+
+			</p:dataTable>
+
+		</p:panel>
+
+	</h:form>
+</body>
+</html>

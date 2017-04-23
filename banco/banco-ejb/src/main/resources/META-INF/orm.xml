@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+
+	<named-query name="rol.listarRolesPorUsuario">
+		<query>SELECT r FROM UsuarioRol userRol JOIN userRol.rol r JOIN userRol.usuario us WHERE us=?1</query>
+
+	</named-query>
+
+	<named-query name="acceso.listarAccesosPorRol">
+		<query>SELECT acc FROM AccesoRol acrol JOIN acrol.rol r JOIN acrol.acceso acc WHERE r IN ?1 </query>
+	</named-query>
+	
+	<named-query name="cliente.buscarPorUsuario">
+		<query>SELECT c FROM Cliente c JOIN c.usuario us WHERE us.nombreUsuario=?1 </query>
+	</named-query>
+	
+	<named-query name="empleado.buscarPorUsuario">
+		<query>SELECT e FROM Empleado e JOIN e.usuario us WHERE us.nombreUsuario=?1 </query>
+	</named-query>
+	
+	<named-query name="cuenta.reporteCuentas">
+		<query>SELECT acc.codigo,acc.tipo,cli.nombre,acc.saldo FROM Cuenta acc JOIN acc.cliente cli</query>
+	</named-query>
+
+</entity-mappings>
