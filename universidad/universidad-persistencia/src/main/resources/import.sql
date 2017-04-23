@@ -25,3 +25,32 @@ INSERT INTO docente(	codigodocente, color, escalafon, seudonimo, tipocontratacio
 INSERT INTO docente(	codigodocente, color, escalafon, seudonimo, tipocontratacion, documentoidentificacion, programa_codigo)	VALUES ('2', 'rojo', 'ESPECIAL', 'aaa', 'TIEMPO_COMPLETO', '2345', '2');
 INSERT INTO docente(	codigodocente, color, escalafon, seudonimo, tipocontratacion, documentoidentificacion, programa_codigo)	VALUES ('3', 'rojo', 'ESPECIAL', 'aaa', 'TIEMPO_COMPLETO', '3456', '3');
 INSERT INTO docente(	codigodocente, color, escalafon, seudonimo, tipocontratacion, documentoidentificacion, programa_codigo)	VALUES ('4', 'rojo', 'ESPECIAL', 'aaa', 'TIEMPO_COMPLETO', '4567', '4');
+
+INSERT INTO rol(nombre,descripcion) values('administrador','admin');
+INSERT INTO rol(nombre,descripcion) values('coordinador','el que coordina');
+INSERT INTO rol(nombre,descripcion) values('profesor','el que enseña');
+
+INSERT INTO privilegio(accion) values('/paginas/seguro/docentesajax.xhtml');
+INSERT INTO privilegio(accion) values('/paginas/seguro/vernotascurso.xhtml');
+INSERT INTO privilegio(accion) values('/paginas/seguro/crearcurso.xhtml');
+
+INSERT INTO privilegio_rol(idprivilegio,idrol) values(1,1);
+INSERT INTO privilegio_rol(idprivilegio,idrol) values(2,1);
+INSERT INTO privilegio_rol(idprivilegio,idrol) values(3,1);
+
+INSERT INTO privilegio_rol(idprivilegio,idrol) values(2,2);
+INSERT INTO privilegio_rol(idprivilegio,idrol) values(3,2);
+
+INSERT INTO privilegio_rol(idprivilegio,idrol) values(2,3);
+
+INSERT INTO usuario(persona,usuario,password,idrol) values('1234','caferrer','1234','1');
+INSERT INTO usuario(persona,usuario,password,idrol) values('2345','quitian14','2345','2');
+INSERT INTO usuario(persona,usuario,password,idrol) values('3456','gladys','3456','3');
+
+
+
+
+
+
+
+

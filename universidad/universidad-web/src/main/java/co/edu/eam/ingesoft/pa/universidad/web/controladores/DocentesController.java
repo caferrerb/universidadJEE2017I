@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
+import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.DocenteEJB;

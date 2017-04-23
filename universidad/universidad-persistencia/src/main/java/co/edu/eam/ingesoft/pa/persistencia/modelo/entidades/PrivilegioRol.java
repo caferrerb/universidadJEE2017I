@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,8 +19,10 @@ public class PrivilegioRol implements Serializable {
 	private long id;
 	
 	@ManyToOne
+	@JoinColumn(name="idprivilegio")
 	private Privilegio privilegio;
 	
+	@JoinColumn(name="idrol")
 	@ManyToOne
 	private Rol rol;
 	
