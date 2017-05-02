@@ -1,5 +1,6 @@
 package co.edu.eam.ingesoft.pa.universidad.servicios;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
@@ -12,11 +13,11 @@ public class ManejadorExcepcionesRest implements ExceptionMapper<Throwable>{
 	public Response toResponse(Throwable exc) {
 		if(exc instanceof ExcepcionNegocio){
 			RespuestaDTO resp=new RespuestaDTO(exc.getMessage(), -200, null);
-			return Response.status(500).entity(resp).build();
+			return Response.status(500).type(MediaType.APPLICATION_JSON).entity(resp).build();
 		}else{
 			exc.printStackTrace();
 			RespuestaDTO resp=new RespuestaDTO("Error general:"+exc.getMessage(), -100, null);
-			return Response.status(500).entity(resp).build();
+			return Response.status(500).type(MediaType.APPLICATION_JSON).entity(resp).build();
 		}
 		
 	}
