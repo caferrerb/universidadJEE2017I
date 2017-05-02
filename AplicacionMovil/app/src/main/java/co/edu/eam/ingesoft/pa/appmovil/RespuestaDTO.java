@@ -1,4 +1,4 @@
-package util;
+package co.edu.eam.ingesoft.pa.appmovil;
 
 /**
  * Created by caferrerb on 30/04/17.

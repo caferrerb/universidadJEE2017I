@@ -1,4 +1,4 @@
-package util;
+package co.edu.eam.ingesoft.pa.appmovil;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -67,6 +67,9 @@ public class RestInvoker<T>  {
      * @return Respuesta DTO.
      */
     public RespuestaDTO<T> get(String url, Map<String,String> parametros){
+        if(url.startsWith("/")){
+            url=url.substring(1);
+        }
         metodo="get";
         this.url=URLBASE+"/"+url;
         this.parametros=parametros;
@@ -85,6 +88,9 @@ public class RestInvoker<T>  {
      * @return Respuesta DTO.
      */
     public RespuestaDTO<T> post(String url, Object obj){
+        if(url.startsWith("/")){
+            url=url.substring(1);
+        }
         metodo="post";
         this.url=URLBASE+"/"+url;
         this.obj=obj;
@@ -129,13 +135,15 @@ return                async.execute();
 
             }
         });
-        pool.shutdown();
+
 
         try {
             return resp.get();
         } catch(Exception e) {
             Toast.makeText(ctx,e.getMessage(),Toast.LENGTH_LONG);
             e.printStackTrace();
+        }finally {
+            pool.shutdown();
         }
         return null;
     }

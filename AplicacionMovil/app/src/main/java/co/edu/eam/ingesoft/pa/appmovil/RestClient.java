@@ -1,4 +1,4 @@
-package util;
+package co.edu.eam.ingesoft.pa.appmovil;
 
 import android.content.Context;
 import android.widget.Toast;
