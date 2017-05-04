@@ -1,6 +1,7 @@
 package co.edu.eam.ingesoft.pa.appmovil;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
@@ -46,6 +47,8 @@ public class RestInvoker<T>  {
     private String url;
 
     private Context ctx;
+
+    private String token;
 
     /**
      * clase del objeto de respuesta
@@ -139,20 +142,37 @@ return                async.execute();
 
         try {
             return resp.get();
-        } catch(Exception e) {
-            Toast.makeText(ctx,e.getMessage(),Toast.LENGTH_LONG);
+        } catch(final Exception e) {
+            AsyncTask task=new AsyncTask(){
+                @Override
+                protected Object doInBackground(Object[] params) {
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Object o) {
+                    //super.onPostExecute(o);
+                    Toast.makeText(ctx,e.getMessage(),Toast.LENGTH_LONG).show();
+
+                }
+            };
+            task.execute();
             e.printStackTrace();
+            RespuestaDTO respdto= new RespuestaDTO<>();
+            respdto.setMensaje(e.getMessage());
+            respdto.setCodigo("-500");
+            return respdto;
         }finally {
             pool.shutdown();
         }
-        return null;
+       // return null;
     }
 
 
 
 
-    private RespuestaDTO<T> doIt(Object... params) {
-        try{
+    private RespuestaDTO<T> doIt(Object... params) throws Exception{
+
             String resp = "";
             if (metodo.equals("get")) {
                 resp = rest.get(url, parametros);
@@ -190,14 +210,11 @@ return                async.execute();
             return dto;
 
 
-        }catch (Exception exc){
-            Toast.makeText(ctx,exc.getMessage(),Toast.LENGTH_LONG);
 
-            exc.printStackTrace();
-        }
-        return null;
 
     }
 
-
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

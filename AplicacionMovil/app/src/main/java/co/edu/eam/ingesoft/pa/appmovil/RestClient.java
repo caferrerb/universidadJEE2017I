@@ -24,6 +24,8 @@ public class RestClient {
 
     private Context ctx;
 
+    private String token;
+
     public RestClient(Context ctx) {
         this.ctx = ctx;
     }
@@ -34,7 +36,7 @@ public class RestClient {
      * @param parametros, parametros de la peticion.
      * @return el string resultante.
      */
-    public String get(String url, Map<String,String> parametros){
+    public String get(String url, Map<String,String> parametros) throws  Exception{
         BufferedReader reader=null;
         HttpURLConnection conn=null;
         String res="";
@@ -49,6 +51,13 @@ public class RestClient {
             URL urlServ = new URL(url);
              conn=(HttpURLConnection)urlServ.openConnection();
 
+            if(token!=null){
+                conn.setRequestProperty("Authorization",token);
+            }
+
+            if(conn.getResponseCode()!=200){
+                throw  new Exception("Error HTTP:"+conn.getResponseCode());
+            }
             reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line = null;
@@ -64,10 +73,6 @@ public class RestClient {
             res = sb.toString();
 
             return res;
-        }catch (Exception e){
-            Toast.makeText(ctx,e.getMessage(),Toast.LENGTH_LONG);
-
-            e.printStackTrace();
         }finally {
             try {
                 if(reader!=null){
@@ -81,7 +86,7 @@ public class RestClient {
                 e.printStackTrace();
             }
         }
-        return "";
+        //return "";
     }
 
     /**
@@ -90,7 +95,7 @@ public class RestClient {
      * @param obj, objeto json a enviar
      * @return, el resultado de la peticion
      */
-    public String post(String url, Object obj){
+    public String post(String url, Object obj) throws  Exception{
         BufferedReader reader=null;
         HttpURLConnection conn=null;
         String res="";
@@ -103,13 +108,18 @@ public class RestClient {
             conn.setRequestMethod("POST");
             conn.addRequestProperty("Accept", "application/json");
             conn.addRequestProperty("Content-Type", "application/json");
+            if(token!=null){
+                conn.setRequestProperty("Authorization",token);
+            }
 
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
             //theJSONYouWantToSend should be the JSONObject as String
             wr.write(new Gson().toJson(obj));  //<--- sending data.
 
             wr.flush();
-
+            if(conn.getResponseCode()!=200){
+                throw  new Exception("Error HTTP:"+conn.getResponseCode());
+            }
             reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line = null;
@@ -125,10 +135,6 @@ public class RestClient {
             res = sb.toString();
 
             return res;
-        }catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(ctx,e.getMessage(),Toast.LENGTH_LONG);
-
         }finally {
             try {
                 if(reader!=null){
@@ -142,9 +148,10 @@ public class RestClient {
                 e.printStackTrace();
             }
         }
-        return "";
+       // return "";
     }
 
-
-
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

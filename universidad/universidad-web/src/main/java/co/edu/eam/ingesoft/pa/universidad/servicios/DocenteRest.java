@@ -18,12 +18,14 @@ import javax.ws.rs.core.MediaType;
 import co.edu.eam.ingesoft.pa.negocio.beans.DocenteEJB;
 import co.edu.eam.ingesoft.pa.persistencia.modelo.entidades.Docente;
 import co.edu.eam.ingesoft.pa.universidad.servicios.dtos.EditarNombreDTO;
+import co.edu.eam.ingesoft.pa.universidad.servicios.seguridad.Secured;
 
 //para invocar un servicio se necesita:
 /*
  * 1. la url del servicio: http://ip:puerto/<root>/<raizRest>/<pathclase>/<pathmetodo>
  */
 //<pathclase>=docente
+@Secured
 @Path("/docente")
 public class DocenteRest {
 	

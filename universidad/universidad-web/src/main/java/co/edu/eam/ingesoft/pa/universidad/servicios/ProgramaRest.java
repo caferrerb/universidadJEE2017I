@@ -1,7 +1,6 @@
 package co.edu.eam.ingesoft.pa.universidad.servicios;
 
 import javax.ejb.EJB;
-import javax.enterprise.inject.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
@@ -9,7 +8,9 @@ import javax.ws.rs.core.MediaType;
 
 import co.edu.eam.ingesoft.pa.negocio.beans.ProgramaEJB;
 import co.edu.eam.ingesoft.pa.persistencia.modelo.entidades.Facultad;
+import co.edu.eam.ingesoft.pa.universidad.servicios.seguridad.Secured;
 
+@Secured
 @Path("/programa")
 public class ProgramaRest {
 

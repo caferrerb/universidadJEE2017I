@@ -10,7 +10,8 @@ import javax.ws.rs.core.MediaType;
 import co.edu.eam.ingesoft.pa.negocio.beans.FacultadEJB;
 import co.edu.eam.ingesoft.pa.negocio.beans.ProgramaEJB;
 import co.edu.eam.ingesoft.pa.persistencia.modelo.entidades.Facultad;
-
+import co.edu.eam.ingesoft.pa.universidad.servicios.seguridad.Secured;
+@Secured
 @Path("/facultad")
 public class FacultadRest {
 

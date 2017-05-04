@@ -77,11 +77,12 @@ public class MainActivity extends AppCompatActivity {
         Map<String,String> params=new HashMap<>();
         params.put("id",id);
         RespuestaDTO<ProgramaDTO> resp=cliente.get("programa/listarfacultad",params);
-
-        ArrayAdapter<ProgramaDTO> spinnerArrayAdapter = new ArrayAdapter<ProgramaDTO>(this,
-                android.R.layout.simple_spinner_item,
-                resp.getLista());
-        cbPrograma.setAdapter(spinnerArrayAdapter);
+        if(resp.getCodigo().equals("0")) {
+            ArrayAdapter<ProgramaDTO> spinnerArrayAdapter = new ArrayAdapter<ProgramaDTO>(this,
+                    android.R.layout.simple_spinner_item,
+                    resp.getLista());
+            cbPrograma.setAdapter(spinnerArrayAdapter);
+        }
 
     }
 
@@ -89,12 +90,13 @@ public class MainActivity extends AppCompatActivity {
         Spinner cbFAcultad=(Spinner)findViewById(R.id.cbFAcultad);
         RestInvoker<FAcultadDTO> cliente=new RestInvoker<FAcultadDTO>(FAcultadDTO.class,this);
         RespuestaDTO<FAcultadDTO> resp=cliente.get("facultad/listar",null);
-
-        ArrayAdapter<FAcultadDTO> spinnerArrayAdapter = new ArrayAdapter<FAcultadDTO>(this,
-                android.R.layout.simple_spinner_item,
-                resp.getLista());
-        cbFAcultad.setAdapter(spinnerArrayAdapter);
-        facultades=resp.getLista();
+        if(resp.getCodigo().equals("0")) {
+            ArrayAdapter<FAcultadDTO> spinnerArrayAdapter = new ArrayAdapter<FAcultadDTO>(this,
+                    android.R.layout.simple_spinner_item,
+                    resp.getLista());
+            cbFAcultad.setAdapter(spinnerArrayAdapter);
+            facultades = resp.getLista();
+        }
     }
 
     /**
